@@ -13,11 +13,11 @@ def index():
         id = session['id']
         return '<html>' + \
                '<h3>Session section:</h3>' + \
-               'Current session id: <span style="color: red">' + id + '</span>' + \
-               f'<br><a href={ url_for("drop_session") }>Destroy session</a>' + \
-               '<h3>Chat bot API:</h3>' + \
-               f'<a href={ url_for("bot_get_state_and_data") }>Send GET request at "/bot/get_state_and_data"</a>' + \
-               '<br><a>Send POST request at "/bot/publish_message"</a>' + \
+               'Current session id: <span style="color: red">' + id + '</span>' +\
+               f'<br><a href={ url_for("drop_session") }>Destroy session</a>' +\
+               '<h3>Chat bot API:</h3>' +\
+               f'<a href={ url_for("bot_get_state_and_data") }>Send GET request at "/bot/get_state_and_data"</a>' +\
+               '<br><a>Send POST request at "/bot/publish_message"</a>' +\
                '</html>'
     else:
         return redirect(url_for('new_session'))
