@@ -9,7 +9,7 @@ app.secret_key = "very_secret_key_do_not_steal_bitcoins"
 
 @app.route('/', methods=['GET'])
 def index():
-	print('*** def INDEX()')
+    print('*** def INDEX()')
     if session.get('id'):
         id = session['id']
         return '<html>' + \
@@ -25,14 +25,14 @@ def index():
 
 @app.route('/new_session', methods=['GET'])
 def new_session():
-	print('*** def new_session()')
+    print('*** def new_session()')
     if not session.get('id'):
         session['id'] = str(random.uniform(0,1)) # create unique ID for user
     return redirect(url_for('index'))
 
 @app.route('/drop_session', methods=['GET'])
 def drop_session():
-	print('*** def drop_session()')
+    print('*** def drop_session()')
     if session.get('id'):
         session.pop('id', None)
         return redirect(url_for('finish'))
@@ -40,7 +40,7 @@ def drop_session():
 
 @app.route('/end', methods=['GET'])
 def finish():
-	print('*** def finish()')
+    print('*** def finish()')
     if session.get('id'):
         return redirect(url_for('index'))
     else:
@@ -52,7 +52,7 @@ def finish():
 
 @app.route('/bot/get_state_and_data', methods=['GET'])
 def bot_get_state_and_data():
-	print('*** def bot_get_state_and_data()')
+    print('*** def bot_get_state_and_data()')
     if session.get('id'):
         id = session['id']
         return '{"id": "' + id + '", "other": "data"}'
@@ -61,7 +61,7 @@ def bot_get_state_and_data():
 
 @app.route('/bot/publish_message', methods=['POST'])
 def bot_publish_message():
-	print('*** def bot_publish_message()')
+    print('*** def bot_publish_message()')
     if session.get('id'):
         id = session['id']
         return '{"id": "' + id + '", "status": "success"}'
