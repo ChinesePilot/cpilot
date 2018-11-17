@@ -1,6 +1,8 @@
 from app import app
-from termcolor import colored
+import sys
+from termcolor import colored, cprint
 
 if __name__ == "__main__":
-	print(colored('CPILOT RUNNING...', 'green'))
+    cprint('CPILOT RUNNING...', 'green', 'on_red')
+    #print(colored('CPILOT RUNNING...', 'green'))
     app.run()
