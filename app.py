@@ -90,7 +90,7 @@ def bot_publish_message():
     else:
         return '{"id": null, "error": "no session found"}'
 
-global variable = 100500
+# global variable = 100500
 
 if __name__ == '__main__':
     print(colored('*** STARTING SERVER ***', 'green'))
