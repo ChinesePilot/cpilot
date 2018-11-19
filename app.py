@@ -14,7 +14,7 @@ app.secret_key = "very_secret_key_do_not_steal_bitcoins"
 @app.route('/', methods=['GET'])
 def index():
     print(colored('*** def INDEX()', 'green'))
-    global variable
+    #global variable
     variable = variable + 1
     print(colored('*** variable = ', 'green'), variable)
     if session.get('id'):
@@ -33,7 +33,7 @@ def index():
 @app.route('/new_session', methods=['GET'])
 def new_session():
     print(colored('*** def new_session()', 'green'))
-    global variable
+    #global variable
     variable = variable + 1
     print(colored('*** variable = ', 'green'), variable)
     if not session.get('id'):
@@ -43,7 +43,7 @@ def new_session():
 @app.route('/drop_session', methods=['GET'])
 def drop_session():
     print(colored('*** def drop_session()', 'green'))
-    global variable
+    #global variable
     variable = variable + 1
     print(colored('*** variable = ', 'green'), variable)
     if session.get('id'):
@@ -54,7 +54,7 @@ def drop_session():
 @app.route('/end', methods=['GET'])
 def finish():
     print(colored('*** def finish()', 'green'))
-    global variable
+    #global variable
     variable = variable + 1
     print(colored('*** variable = ', 'green'), variable)
     if session.get('id'):
@@ -69,7 +69,7 @@ def finish():
 @app.route('/bot/get_state_and_data', methods=['GET'])
 def bot_get_state_and_data():
     print(colored('*** def bot_get_state_and_data()', 'green'))
-    global variable
+    #global variable
     variable = variable + 1
     print(colored('*** variable = ', 'green'), variable)
     if session.get('id'):
@@ -81,7 +81,7 @@ def bot_get_state_and_data():
 @app.route('/bot/publish_message', methods=['POST'])
 def bot_publish_message():
     print(colored('*** def bot_publish_message()', 'green'))
-    global variable
+    #global variable
     variable = variable + 1
     print(colored('*** variable = ', 'green'), variable)
     if session.get('id'):
@@ -94,7 +94,7 @@ def bot_publish_message():
 
 if __name__ == '__main__':
     print(colored('*** STARTING SERVER ***', 'green'))
-    global variable
+    #global variable
     variable = 100500
     app.run(debug=True, host='0.0.0.0')
  
