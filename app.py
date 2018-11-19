@@ -3,6 +3,7 @@ import random
 from termcolor import colored
 
 variable = 100500
+print(colored('*** VARIABLE = ', 'green'), variable)
 app = Flask(__name__)
 app.secret_key = "very_secret_key_do_not_steal_bitcoins"
 
@@ -33,7 +34,7 @@ def index():
 @app.route('/new_session', methods=['GET'])
 def new_session():
     print(colored('*** def new_session()', 'green'))
-    #global variable
+    global variable
     variable = variable + 1
     print(colored('*** variable = ', 'green'), variable)
     if not session.get('id'):
@@ -96,5 +97,6 @@ if __name__ == '__main__':
     print(colored('*** STARTING SERVER ***', 'green'))
     #global variable
     variable = 100500
+    print(colored('*** VARIABLE = ', 'green'), variable)
     app.run(debug=True, host='0.0.0.0')
  
