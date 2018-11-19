@@ -1,4 +1,4 @@
-from app import app
+from app import app, variable
 import sys
 from termcolor import colored, cprint
 
