@@ -14,7 +14,7 @@ variable = 100500
 @app.route('/', methods=['GET'])
 def index():
     print(colored('*** def INDEX()', 'green'))
-    variable = variable + 1;
+    variable = variable + 1
     print(colored('*** variable = ', 'green'), variable)
     if session.get('id'):
         id = session['id']
@@ -32,7 +32,7 @@ def index():
 @app.route('/new_session', methods=['GET'])
 def new_session():
     print(colored('*** def new_session()', 'green'))
-    variable = variable + 1;
+    variable = variable + 1
     print(colored('*** variable = ', 'green'), variable)
     if not session.get('id'):
         session['id'] = str(random.uniform(0,1)) # create unique ID for user
@@ -41,7 +41,7 @@ def new_session():
 @app.route('/drop_session', methods=['GET'])
 def drop_session():
     print(colored('*** def drop_session()', 'green'))
-    variable = variable + 1;
+    variable = variable + 1
     print(colored('*** variable = ', 'green'), variable)
     if session.get('id'):
         session.pop('id', None)
@@ -51,7 +51,7 @@ def drop_session():
 @app.route('/end', methods=['GET'])
 def finish():
     print(colored('*** def finish()', 'green'))
-    variable = variable + 1;
+    variable = variable + 1
     print(colored('*** variable = ', 'green'), variable)
     if session.get('id'):
         return redirect(url_for('index'))
@@ -65,7 +65,7 @@ def finish():
 @app.route('/bot/get_state_and_data', methods=['GET'])
 def bot_get_state_and_data():
     print(colored('*** def bot_get_state_and_data()', 'green'))
-    variable = variable + 1;
+    variable = variable + 1
     print(colored('*** variable = ', 'green'), variable)
     if session.get('id'):
         id = session['id']
@@ -76,7 +76,7 @@ def bot_get_state_and_data():
 @app.route('/bot/publish_message', methods=['POST'])
 def bot_publish_message():
     print(colored('*** def bot_publish_message()', 'green'))
-    variable = variable + 1;
+    variable = variable + 1
     print(colored('*** variable = ', 'green'), variable)
     if session.get('id'):
         id = session['id']
