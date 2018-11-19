@@ -5,7 +5,7 @@ from termcolor import colored
 app = Flask(__name__)
 app.secret_key = "very_secret_key_do_not_steal_bitcoins"
 
-variable = 100500;
+variable = 100500
 
 #
 # Keeping session stuff
