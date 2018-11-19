@@ -2,10 +2,10 @@ from flask import Flask, session, redirect, url_for, escape, request
 import random
 from termcolor import colored
 
+variable = 100500
 app = Flask(__name__)
 app.secret_key = "very_secret_key_do_not_steal_bitcoins"
 
-variable = 100500
 
 #
 # Keeping session stuff
@@ -84,8 +84,10 @@ def bot_publish_message():
     else:
         return '{"id": null, "error": "no session found"}'
 
+variable = 100500
 
 if __name__ == '__main__':
     print(colored('*** STARTING SERVER ***', 'green'))
+	global variable = 100500
     app.run(debug=True, host='0.0.0.0')
  
