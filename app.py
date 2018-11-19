@@ -2,7 +2,7 @@ from flask import Flask, session, redirect, url_for, escape, request, app
 import random
 from termcolor import colored
 
-variable = 100500
+variable = 100000
 print(colored('*** VARIABLE = ', 'green'), variable)
 app = Flask(__name__)
 app.secret_key = "very_secret_key_do_not_steal_bitcoins"
@@ -15,7 +15,7 @@ app.secret_key = "very_secret_key_do_not_steal_bitcoins"
 @app.route('/', methods=['GET'])
 def index():
     print(colored('*** def INDEX()', 'green'))
-    #global variable
+    global variable
     variable = variable + 1
     print(colored('*** variable = ', 'green'), variable)
     if session.get('id'):
@@ -44,7 +44,7 @@ def new_session():
 @app.route('/drop_session', methods=['GET'])
 def drop_session():
     print(colored('*** def drop_session()', 'green'))
-    #global variable
+    global variable
     variable = variable + 1
     print(colored('*** variable = ', 'green'), variable)
     if session.get('id'):
@@ -55,7 +55,7 @@ def drop_session():
 @app.route('/end', methods=['GET'])
 def finish():
     print(colored('*** def finish()', 'green'))
-    #global variable
+    global variable
     variable = variable + 1
     print(colored('*** variable = ', 'green'), variable)
     if session.get('id'):
@@ -70,7 +70,7 @@ def finish():
 @app.route('/bot/get_state_and_data', methods=['GET'])
 def bot_get_state_and_data():
     print(colored('*** def bot_get_state_and_data()', 'green'))
-    #global variable
+    global variable
     variable = variable + 1
     print(colored('*** variable = ', 'green'), variable)
     if session.get('id'):
@@ -82,7 +82,7 @@ def bot_get_state_and_data():
 @app.route('/bot/publish_message', methods=['POST'])
 def bot_publish_message():
     print(colored('*** def bot_publish_message()', 'green'))
-    #global variable
+    global variable
     variable = variable + 1
     print(colored('*** variable = ', 'green'), variable)
     if session.get('id'):
