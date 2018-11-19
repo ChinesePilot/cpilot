@@ -1,0 +1,14 @@
+
+
+
+
+TO START SERVER:
+
+sudo service nginx restart
+sudo service uwsgi restart
+sudo systemctl start cpilot
+sudo systemctl enable cpilot
+virtualenv --python=/usr/bin/python3.6 ~/cpilot/venv
+cd cpilot
+source venv/bin/activate
+uwsgi --socket 0.0.0.0:8000 --protocol=http -w wsgi:app
