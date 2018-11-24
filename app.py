@@ -91,6 +91,10 @@ def bot_publish_message():
     else:
         return '{"id": null, "error": "no session found"}'
 
+@app.route('/getCoord', methods=['GET'])
+def getCoord():
+    print(colored('*** def new_session()', 'green'))
+    return '{"detected":[{"lat": "55.33568", "lon": "155.57457"},{"lat": "53.48181", "lon": "160.47447"}]}'
 # global variable = 100500
 
 if __name__ == '__main__':
