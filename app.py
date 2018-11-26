@@ -1,4 +1,4 @@
-from flask import Flask, session, redirect, url_for, escape, request, app
+from flask import Flask, session, redirect, url_for, escape, request, app, g
 import random
 from termcolor import colored
 
@@ -6,7 +6,6 @@ variable = 100000
 print(colored('*** VARIABLE = ', 'green'), variable)
 app = Flask(__name__)
 app.secret_key = "very_secret_key_do_not_steal_bitcoins"
-
 
 #
 # Keeping session stuff
@@ -17,7 +16,12 @@ def index():
     print(colored('*** def INDEX()', 'green'))
     global variable
     variable = variable + 1
-    print(colored('*** variable = ', 'green'), variable)
+    if 'variable' not in g:
+        g.variable = 1
+    else:
+        g.variable = g.variable + 1
+
+    print(colored('*** g.variable = ', 'green'), g.variable)
     if session.get('id'):
         id = session['id']
         return '<html>' + \
@@ -36,7 +40,12 @@ def new_session():
     print(colored('*** def new_session()', 'green'))
     global variable
     variable = variable + 1
-    print(colored('*** variable = ', 'green'), variable)
+    if 'variable' not in g:
+        g.variable = 1
+    else:
+        g.variable = g.variable + 1
+
+    print(colored('*** g.variable = ', 'green'), g.variable)
     if not session.get('id'):
         session['id'] = str(random.uniform(0,1)) # create unique ID for user
     return redirect(url_for('index'))
@@ -46,7 +55,12 @@ def drop_session():
     print(colored('*** def drop_session()', 'green'))
     global variable
     variable = variable + 1
-    print(colored('*** variable = ', 'green'), variable)
+    if 'variable' not in g:
+        g.variable = 1
+    else:
+        g.variable = g.variable + 1
+
+    print(colored('*** g.variable = ', 'green'), g.variable)
     if session.get('id'):
         session.pop('id', None)
         return redirect(url_for('finish'))
@@ -57,7 +71,12 @@ def finish():
     print(colored('*** def finish()', 'green'))
     global variable
     variable = variable + 1
-    print(colored('*** variable = ', 'green'), variable)
+    if 'variable' not in g:
+        g.variable = 1
+    else:
+        g.variable = g.variable + 1
+
+    print(colored('*** g.variable = ', 'green'), g.variable)
     if session.get('id'):
         return redirect(url_for('index'))
     else:
@@ -72,7 +91,11 @@ def bot_get_state_and_data():
     print(colored('*** def bot_get_state_and_data()', 'green'))
     global variable
     variable = variable + 1
-    print(colored('*** variable = ', 'green'), variable)
+    if 'variable' not in g:
+        g.variable = 1
+    else:
+        g.variable = g.variable + 1
+    print(colored('*** g.variable = ', 'green'), g.variable)
     if session.get('id'):
         id = session['id']
         return '{"id": "' + id + '", "other": "data"}'
@@ -84,7 +107,11 @@ def bot_publish_message():
     print(colored('*** def bot_publish_message()', 'green'))
     global variable
     variable = variable + 1
-    print(colored('*** variable = ', 'green'), variable)
+    if 'variable' not in g:
+        g.variable = 1
+    else:
+        g.variable = g.variable + 1
+    print(colored('*** g.variable = ', 'green'), g.variable)
     if session.get('id'):
         id = session['id']
         return '{"id": "' + id + '", "status": "success"}'
