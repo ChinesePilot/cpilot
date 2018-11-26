@@ -4,6 +4,8 @@ from termcolor import colored
 
 variable = 100000
 print(colored('*** VARIABLE = ', 'green'), variable)
+from werkzeug.contrib.cache import SimpleCache
+cache = SimpleCache()
 app = Flask(__name__)
 app.secret_key = "very_secret_key_do_not_steal_bitcoins"
 
@@ -22,7 +24,12 @@ def index():
         g.variable = g.variable + 1
 
     print(colored('*** g.variable = ', 'green'), g.variable)
-    return '{"g.variable": "' + str(g.variable) + '"}'
+    rv = cache.get('frame')
+    if rv is None:
+        cache.set('frame', 1, timeout=5 * 60)
+    else:
+        cache.set('frame', rv + 1, timeout=5 * 60)
+    return '{"g.variable": "' + str(cache.get('frame')) + '"}'
     if session.get('id'):
         id = session['id']
         return '<html>' + \
@@ -47,7 +54,12 @@ def new_session():
         g.variable = g.variable + 1
 
     print(colored('*** g.variable = ', 'green'), g.variable)
-    return '{"g.variable": "' + str(g.variable) + '"}'
+    rv = cache.get('frame')
+    if rv is None:
+        cache.set('frame', 1, timeout=5 * 60)
+    else:
+        cache.set('frame', rv + 1, timeout=5 * 60)
+    return '{"g.variable": "' + str(cache.get('frame')) + '"}'
     if not session.get('id'):
         session['id'] = str(random.uniform(0,1)) # create unique ID for user
     return redirect(url_for('index'))
@@ -63,7 +75,12 @@ def drop_session():
         g.variable = g.variable + 1
 
     print(colored('*** g.variable = ', 'green'), g.variable)
-    return '{"g.variable": "' + str(g.variable) + '"}'
+    rv = cache.get('frame')
+    if rv is None:
+        cache.set('frame', 1, timeout=5 * 60)
+    else:
+        cache.set('frame', rv + 1, timeout=5 * 60)
+    return '{"g.variable": "' + str(cache.get('frame')) + '"}'
     if session.get('id'):
         session.pop('id', None)
         return redirect(url_for('finish'))
@@ -80,7 +97,12 @@ def finish():
         g.variable = g.variable + 1
 
     print(colored('*** g.variable = ', 'green'), g.variable)
-    return '{"g.variable": "' + str(g.variable) + '"}'
+    rv = cache.get('frame')
+    if rv is None:
+        cache.set('frame', 1, timeout=5 * 60)
+    else:
+        cache.set('frame', rv + 1, timeout=5 * 60)
+    return '{"g.variable": "' + str(cache.get('frame')) + '"}'
     if session.get('id'):
         return redirect(url_for('index'))
     else:
@@ -100,7 +122,12 @@ def bot_get_state_and_data():
     else:
         g.variable = g.variable + 1
     print(colored('*** g.variable = ', 'green'), g.variable)
-    return '{"g.variable": "' + str(g.variable) + '"}'
+    rv = cache.get('frame')
+    if rv is None:
+        cache.set('frame', 1, timeout=5 * 60)
+    else:
+        cache.set('frame', rv + 1, timeout=5 * 60)
+    return '{"g.variable": "' + str(cache.get('frame')) + '"}'
     if session.get('id'):
         id = session['id']
         return '{"id": "' + id + '", "other": "data"}'
@@ -117,7 +144,12 @@ def bot_publish_message():
     else:
         g.variable = g.variable + 1
     print(colored('*** g.variable = ', 'green'), g.variable)
-    return '{"g.variable": "' + str(g.variable) + '"}'
+    rv = cache.get('frame')
+    if rv is None:
+        cache.set('frame', 1, timeout=5 * 60)
+    else:
+        cache.set('frame', rv + 1, timeout=5 * 60)
+    return '{"g.variable": "' + str(cache.get('frame')) + '"}'
     if session.get('id'):
         id = session['id']
         return '{"id": "' + id + '", "status": "success"}'
