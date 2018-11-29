@@ -1,5 +1,5 @@
-from flask import Flask, session, redirect, url_for, escape, request, app, g
-import random
+from flask import Flask, session, redirect, url_for, escape, request, app, g, send_file, send_from_directory
+import random, os
 from termcolor import colored
 
 variable = 100000
@@ -161,6 +161,23 @@ def getCoord():
     print(colored('*** def new_session()', 'green'))
     return '{"detected":[{"lat": "55.33568", "lon": "155.57457"},{"lat": "53.48181", "lon": "160.47447"}]}'
 # global variable = 100500
+
+@app.route('/download/<filename>', methods=['GET','POST'])
+def download(filename):
+    uploads = os.path.join(app.root_path, "files")
+    print('*** uploads = ', uploads)
+    return send_from_directory(directory=uploads, filename=filename)
+
+@app.route("/downloadfile/<filename>")
+def downloadfile (filename = None):
+    if filename is None:
+        self.Error(400)
+    try:
+        rt_path = current_app.root_path
+        return send_file(rt_path + "/files/"+filename, as_attachment=True)
+    except Exception as e:
+        self.log.exception(e)
+        self.Error(400)
 
 if __name__ == '__main__':
     print(colored('*** STARTING SERVER ***', 'green'))
